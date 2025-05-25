@@ -15,9 +15,22 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh; /* height를 min-height로 변경 */
   margin: 0;
   overflow: hidden; /* 기본적으로 스크롤 숨김 */
+}
+
+.container {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 20px; /* 패딩을 줄여서 모바일에 맞춤 */
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  overflow-y: auto; /* 세로 스크롤 가능 */
+  max-height: 80vh; /* 최대 높이 설정 */
 }
 
 .container {
@@ -128,16 +141,16 @@ button:hover {
 /* 미디어 쿼리 */
 @media (max-width: 767px) { /* 모바일 */
   .container {
-    padding: 20px;
+    padding: 15px; /* 핸드폰에서의 패딩 */
   }
   
   button {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 10px 15px; /* 버튼 크기 조정 */
+    font-size: 14px; /* 버튼 폰트 크기 조정 */
   }
 
   #question, #questionText {
-    font-size: 18px;
+    font-size: 18px; /* 질문 폰트 크기 조정 */
   }
 
   .grid {
