@@ -667,11 +667,125 @@ button:hover {
   const activityName = activityNames[highestActivity] || "알 수 없음";
   const adjective = adjectiveNames[highestActivity] || "알 수 없음";
 
-  resultTitle.innerHTML = `
-    바로 <strong>${adjective} ${animalName}</strong>!!<br>
-    당신의 성향은 <strong>${fieldName}</strong>이며 또한 <strong>${secondFieldName}</strong>입니다. 
-    당신에게 알맞은 도서관 추천 이용방법은 <strong>${activityName}</strong>입니다.
-  `;
+  let imageUrl = "";
+
+// 이미지 URL 매핑 객체
+const imageMapping = {
+  general: {
+    lyingDown: "이미지_URL_1",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  philosophy: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  religion: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  socialScience: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  science: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  technology: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  art: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  language: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  literature: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  history: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+  cartoon: {
+    lyingDown: "이미지_URL_2",
+    studying: "이미지_URL_2",
+    chatting: "이미지_URL_2",
+    listeningToMusic: "이미지_URL_2",
+    searchdata: "이미지_URL_2",
+    readingBooks: "이미지_URL_2",
+    participatingInEvents: "이미지_URL_2",
+  },
+};
+
+// 이미지 URL 설정
+if (imageMapping[highestField] && imageMapping[highestField][highestActivity]) {
+  imageUrl = imageMapping[highestField][highestActivity];
+}
+
+
+
+// 결과 제목 설정
+resultTitle.innerHTML = `
+  바로 <strong>${adjective} ${animalName}</strong>!!<br>
+  당신의 성향은 <strong>${fieldName}</strong>이며 또한 <strong>${secondFieldName}</strong>입니다. 
+  당신에게 알맞은 도서관 추천 이용방법은 <strong>${activityName}</strong>입니다.
+  <img src="${imageUrl}" alt="추천 이미지" class="result-image" /> <!-- 결과 이미지 추가 -->
+`;
 
   // 4개의 칸에 내용 추가
   const gridItems = document.querySelectorAll('.grid-item'); // gridItems 정의
