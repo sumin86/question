@@ -24,19 +24,6 @@ body {
   background: white;
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  padding: 20px; /* 패딩을 줄여서 모바일에 맞춤 */
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-  overflow-y: auto; /* 세로 스크롤 가능 */
-  max-height: 80vh; /* 최대 높이 설정 */
-}
-
-.container {
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   padding: 40px;
   width: 90%;
   max-width: 600px;
@@ -100,7 +87,7 @@ button:hover {
   margin: 20px 0;
 }
 
-/* 그리드 스타일 */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -223,7 +210,6 @@ button:hover {
 
   <div id="set2" class="container" style="display: none;">
     <h2>📚 2세트</h2>
-    <p>마지막 세트 입니다.</p>
     <div class="progress">진행 상황: 질문 <span id="questionNumber">1</span>/10</div>
     <div class="progress-bar-container">
       <div class="progress-bar" id="progressBar2" style="width: 0%"></div>
@@ -240,7 +226,7 @@ button:hover {
     <div class="subtitle">당신은 무슨 동물일까요??</div>
     <div class="resultText" id="resultTitle"></div>
     <div class="divider"></div>
-    <div class="recommendation">미래뜰 도서관에서 아래의 책을 찾아보세요!!</div>
+    <div class="recommendation">책 추천!</div>
     <div class="grid">
       <div class="grid-item">
         <img src="" alt="책 이미지" class="book-image" />
@@ -439,14 +425,6 @@ button:hover {
       document.getElementById("set2").style.display = "none";
       document.getElementById("result").style.display = "none";
       document.getElementById(screenId).style.display = "block";
-
-      if (screenId === 'set1') {
-        current1 = 0; // 질문 인덱스를 초기화
-        updateQuestion1();
-      } else if (screenId === 'set2') {
-        current2 = 0; // 질문 인덱스를 초기화
-        updateQuestion2();
-      }
     }
 
     function answer(isYes) {
@@ -472,28 +450,7 @@ button:hover {
       }
     }
 
-    function handleAnswer(isYes) {
-      const currentQuestion = questions2[current2];
-      if (isYes) {
-        // "예"를 선택했을 때 점수 추가
-        for (const [key, value] of Object.entries(currentQuestion.yesScores)) {
-          activityScores[key] = (activityScores[key] || 0) + value;
-        }
 
-      } else {
-        // "아니오"를 선택했을 때 점수 추가
-        for (const [key, value] of Object.entries(currentQuestion.noScores)) {
-          scores[key] = (scores[key] || 0) + value;
-        }
-      }
-
-      current1++;
-      if (current1 < questions1.length) {
-        updateQuestion1();
-      } else {
-        showScreen('set2');
-      }
-    }
 
     function handleAnswer(isYes) {
       const currentQuestion = questions2[current2];
