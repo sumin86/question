@@ -33,6 +33,15 @@ body {
   max-height: 80vh; /* 최대 높이 설정 */
 }
 
+.container h2 {
+  line-height: 1.0; /* 줄 간격 조정 */
+}
+
+.main-menu-text p {
+    line-height: 1.5; /* 줄 간격 조정 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
 /* 버튼 스타일 */
 button {
   background-color: #a8c7f4;
@@ -190,8 +199,11 @@ button:hover {
 
   <div id="mainMenu" class="container">
     <h2>📚 책 성향 테스트 시작하기</h2>
-    <p>미래뜰 도서관에서 당신은 무슨 동물일까요??</p>
-    <p>설문조사는 총 2세트로 진행됩니다.</p>
+    <div class="main-menu-text">
+        <p>미래뜰 도서관에서 당신은 무슨 동물일까요??</p>
+        <p>설문조사는 총 2세트로 진행됩니다.</p>
+        <div style="height: 15px;"></div>
+    </div>
     <button onclick="showScreen('set1')">시작하기</button>
   </div>
 
