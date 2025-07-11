@@ -762,16 +762,27 @@ resultTitle.innerHTML = `
 
   // 4개의 칸에 내용 추가
   const gridItems = document.querySelectorAll('.grid-item'); // gridItems 정의
-  const content = recommendations[highestField] || [
+
+  // 가장 높은 분야의 책 2개와 두 번째로 높은 분야의 책 2개 가져오기
+  const topRecommendations = recommendations[highestField] || [
     ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."],
-    ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."],
+    ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."]
+  ];
+  
+  const secondRecommendations = recommendations[secondHighestField] || [
     ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."],
     ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."]
   ];
 
+  // 첫 두 개의 칸은 가장 높은 분야의 책, 나머지 두 개의 칸은 두 번째로 높은 분야의 책
   gridItems.forEach((item, index) => {
-    const book = content[index] || ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."];
-    
+    let book;
+    if (index < 2) {
+      book = topRecommendations[index];
+    } else {
+      book = secondRecommendations[index - 2];
+    }
+
     item.innerHTML = `
       <strong>${book[0]}</strong><br>
       <span class="author">${book[1]}</span><br>
