@@ -749,30 +749,26 @@ if (imageMapping[highestField] && imageMapping[highestField][highestActivity]) {
   imageUrl = imageMapping[highestField][highestActivity];
 }
 
-
-
 // 결과 제목 설정
 resultTitle.innerHTML = `
   바로 <strong>${adjective} ${animalName}</strong>!!<br>
   <img src="${imageUrl}" alt="추천 이미지" class="result-image" /> <!-- 결과 이미지 추가 -->
   당신의 성향은 <strong>${fieldName}</strong>이며 또한 <strong>${secondFieldName}</strong>입니다. 
   당신에게 알맞은 도서관 추천 이용방법은 <strong>${activityName}</strong>입니다.
-
 `;
+
+  // 랜덤하게 책을 선택하는 함수
+  function getRandomBooks(recommendationList, count) {
+      const shuffled = recommendationList.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+  }
+
+  // 각 분야의 추천 도서에서 랜덤으로 2권 선택
+  const topRecommendations = getRandomBooks(recommendations[highestField] || [], 2);
+  const secondRecommendations = getRandomBooks(recommendations[secondHighestField] || [], 2);
 
   // 4개의 칸에 내용 추가
   const gridItems = document.querySelectorAll('.grid-item'); // gridItems 정의
-
-  // 가장 높은 분야의 책 2개와 두 번째로 높은 분야의 책 2개 가져오기
-  const topRecommendations = recommendations[highestField] || [
-    ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."],
-    ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."]
-  ];
-  
-  const secondRecommendations = recommendations[secondHighestField] || [
-    ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."],
-    ["내용 없음", "저자 없음", "청구번호 없음", "이미지 없음", "설명이 없습니다."]
-  ];
 
   // 첫 두 개의 칸은 가장 높은 분야의 책, 나머지 두 개의 칸은 두 번째로 높은 분야의 책
   gridItems.forEach((item, index) => {
@@ -780,7 +776,7 @@ resultTitle.innerHTML = `
     if (index < 2) {
       book = topRecommendations[index];
     } else {
-      book = secondRecommendations[index - 2];
+      book = secondRecommendations[index-2];
     }
 
     item.innerHTML = `
